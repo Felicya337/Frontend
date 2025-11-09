@@ -8,7 +8,7 @@ const Navbar = () => {
                 <h1 className="text-xl font-bold tracking-wide">Budaya Batak</h1>
                 <div className="space-x-6 flex items-center">
                     <Link to="/">Home</Link>
-                    <Link to="/ensiklopedi">Ensiklopedia</Link>
+                    <Link to="/ensiklopedia">Ensiklopedia</Link>
                     <Link to="/storytelling">Storytelling</Link>
                     <Link to="/peta">Peta Budaya</Link>
                     <Link to="/kuis">Kuis</Link>

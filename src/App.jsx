@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import AudioPlayer from "./components/AudioPlayer";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Ensiklopedia from './pages/Ensiklopedia';
+import EnsiklopediaDetail from "./pages/EnsiklopediaDetail";
 
 function App() {
   return (
@@ -14,8 +16,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/storytelling" element={<Storytelling />} />
+        
+        <Route path="/ensiklopedia/:id" element={<EnsiklopediaDetail />} />
+        <Route path="/ensiklopedia" element={<Ensiklopedia />} />
 
+        <Route path="/storytelling" element={<Storytelling />} />
         /* Halaman Admin */
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
