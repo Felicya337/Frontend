@@ -5,7 +5,7 @@ import axios from "axios";
 const API_URL = "http://127.0.0.1:8000/api/ensiklopedia";
 
 const EnsiklopediaDetail = () => {
-  const { id } = useParams();
+  const { slog } = useParams();
   const [itemData, setItemData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,7 +15,7 @@ const EnsiklopediaDetail = () => {
   useEffect(() => {
     const fetchItemData = async () => {
       try {
-        const res = await axios.get(`${API_URL}/${id}`);
+        const res = await axios.get(`${API_URL}/slug/${slug}`);
         setItemData(res.data);
         setIsLoading(false);
       } catch (err) {
@@ -72,10 +72,15 @@ const EnsiklopediaDetail = () => {
         <div className="relative w-full max-w-3xl mx-auto rounded-lg shadow-lg overflow-hidden">
           {/* 1. Gambar Utama */}
           <img
-            src={itemData.gambar_url}
+            src={
+              itemData.gambar
+                ? `http://127.0.0.1:8000/storage/${itemData.gambar}`
+                : `https://source.unsplash.com/600x400/?batak,culture`
+            }
             alt={itemData.judul}
             className="w-full h-auto"
           />
+
 
           {/* 2. Tampilkan Hotspot jika ada */}
           {hasHotspots &&

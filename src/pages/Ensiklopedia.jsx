@@ -54,7 +54,7 @@ const Ensiklopedia = () => {
             {itemList.map((item) => (
               <Link
                 key={item.id}
-                to={`/ensiklopedia/${item.id}`} 
+                to={`/ensiklopedia/${item.slug}`} 
                 className="block bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 group"
               >
                 {/* Gambar Kartu */}
@@ -62,11 +62,13 @@ const Ensiklopedia = () => {
                   <img
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     src={
-                      item.gambar_url ||
-                      `https://source.unsplash.com/400x300/?culture,art,${item.id}`
+                      item.gambar
+                        ? `http://127.0.0.1:8000/storage/${item.gambar}`
+                        : `https://source.unsplash.com/400x300/?batak,culture,${item.id}`
                     }
                     alt={item.judul}
                   />
+
                 </div>
 
                 {/* Konten Teks Kartu */}
@@ -74,9 +76,18 @@ const Ensiklopedia = () => {
                   <h3 className="font-bold text-2xl mb-2 text-merah-800 dark:text-merah-500">
                     {item.judul}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-base">
-                    {item.deskripsi_singkat}
+
+                  <p className="text-sm text-gray-500 mb-1">
+                  Kategori: {item.kategori?.nama}
                   </p>
+
+                  <p
+                    className="text-gray-700 dark:text-gray-300 text-base"
+                    dangerouslySetInnerHTML={{
+                      __html: item.deskripsi_html.substring(0, 120) + "..."
+                    }}
+                  ></p>
+
                 </div>
               </Link>
             ))}
